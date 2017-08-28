@@ -1,6 +1,6 @@
 ## About this app
 
-This application's backed is built on Laravel 5.4 and its frontend with Bootstrap 3.3.6 and VueJS 2.1.10.
+The application's backend is built on Laravel 5.4 and its frontend with Bootstrap 3.3.6 and VueJS 2.1.10.
 
 See below the "Scenarios" and the "User experience" sections.
 
@@ -28,7 +28,20 @@ However, our legal team has insisted that before the form is submitted, we have 
 ## User experience
 
 - The app uses HTML field validation and requires all fields to be filled
-- If the user has already received the coupon once then it is not sent again
+- If the user has already received the coupon once then he/she is not allowed to received it again
 - If the user provides a wrong formatted number then the request is being rejected
 - Session Flash messages are being provided after submitting the form with success or failure to enhance the user experience
-- There are two message templates for this campaign and are chose based on the time of the request.
+- There are two message templates for this campaign and are being chose based on the time of the request.
+
+
+## How to install
+
+- `git clone git@github.com:flangofas/redeem-coupon-by-sms.git`
+- `composer install`
+- `npm install`
+- `Create .env out of .env.example`
+    - Create database in MySQL
+    - Add credentials to .env
+- Start php built-in server `php artisan serve`
+- Create assets `npm run production`
+- Visit http://localhost:8000/redeem/bonus
