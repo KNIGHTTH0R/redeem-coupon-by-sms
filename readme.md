@@ -1,51 +1,34 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## About this app
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This application's backed is built on Laravel 5.4 and its frontend with Bootstrap 3.3.6 and VueJS 2.1.10.
 
-## About Laravel
+See below the "Scenarios" and the "User experience" sections.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Scenarios
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Backend Scenario
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+The company has decided to give a bonus coupon that can be redeemed for free deposit. However, to stop abuse we want to provide the bonus code only in exchange for an telephone number, sending the code in an SMS message.
 
-## Learning Laravel
+Your task is to create a REST API endpoint that receives a phone number and sends an SMS.
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+The endpoint should be available at ‘/api/sms-promotion’. The request body will consist of a single field, “phone”. You should then send an SMS to the provided phone number, with one of two messages:
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+If the current server time is in the morning, the message should read “Good morning! Your promocode is AM123”.
+If the current server time is in the afternoon or later, the message should read “Hello! Your promocode is PM456”.
 
-## Laravel Sponsors
+The API should return a suitable HTTP response (you can get creative here), including handling errors appropriately.
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
+### Frontend Scenario
 
-## Contributing
+Your task is to create a simple form for sending the above SMS code, collecting the phone number and passing it to the endpoint.
+However, our legal team has insisted that before the form is submitted, we have two checkboxes which must be checked. - “I am over 18” and “I accept the terms and conditions”. There is no need for any styling.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## User experience
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- The app uses HTML field validation and requires all fields to be filled
+- If the user has already received the coupon once then it is not sent again
+- If the user provides a wrong formatted number then the request is being rejected
+- Session Flash messages are being provided after submitting the form with success or failure to enhance the user experience
+- There are two message templates for this campaign and are chose based on the time of the request.
