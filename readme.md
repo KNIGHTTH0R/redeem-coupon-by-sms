@@ -45,3 +45,7 @@ However, our legal team has insisted that before the form is submitted, we have 
 - Start php built-in server `php artisan serve`
 - Create assets `npm run production`
 - Visit http://localhost:8000/redeem/bonus
+
+## Screenshot
+
+![Alt text](https://raw.githubusercontent.com/flangofas/redeem-coupon-by-sms/master/screenshot.png "Screenshot")
